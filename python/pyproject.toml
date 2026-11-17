@@ -1,0 +1,62 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "safepath"
+version = "0.1.0"
+description = "Validazione e correzione dei nomi di file e directory di un albero documentale sincronizzato"
+requires-python = ">=3.13,<3.14"
+dependencies = [
+    # La coppia interprete + tabelle Unicode definisce il comportamento: la
+    # versione e' pinnata e allineata a quella dichiarata dal binario Go.
+    "unicodedata2==15.0.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "pytest-cov", "ruff", "mypy"]
+
+[project.scripts]
+safepath = "safepath.__main__:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/safepath"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "PTH", "RUF"]
+
+[tool.ruff.lint.per-file-ignores]
+# I moduli che toccano il filesystem lavorano su path come stringhe, non come
+# Path: pathlib normalizza il percorso e interferisce con il prefisso "\\?\"
+# dei long path Windows (§7.2) e con i nomi surrogate-escaped di Linux (§7.1).
+# os.rename e' inoltre l'unica primitiva che non introduce semantiche di replace
+# diverse fra piattaforme, che §8.2 vieta esplicitamente.
+"src/safepath/walker/walk.py" = ["PTH118", "PTH208"]
+"src/safepath/walker/osdep.py" = ["PTH100"]  # resolve() seguirebbe i symlink, vietato da §7.3
+"src/safepath/rename/renamer.py" = ["PTH104", "PTH118", "PTH208"]
+"src/safepath/rename/temp.py" = ["PTH104", "PTH118"]
+"src/safepath/rename/executor.py" = ["PTH118", "PTH120"]
+"src/safepath/rename/journal.py" = ["PTH123"]  # append binario esplicito, mai text mode (§5)
+# I caratteri "ambigui" sono il dominio stesso della mappa: sono le sorgenti da
+# traslitterare, e sostituirli con il loro omoglifo ASCII svuoterebbe la regola.
+"src/safepath/planner/charmap.py" = ["RUF001", "RUF003"]
+"tests/test_planner.py" = ["RUF001", "RUF003"]
+
+[tool.mypy]
+python_version = "3.13"
+strict = true
+
+# unicodedata2 non distribuisce type information. E' comunque la dipendenza
+# obbligata: lo stdlib unicodedata e' legato alla build di CPython e non
+# permette di allinearsi a una build Go pinnata (Development guidelines §6.1).
+# I wrapper in rules/charset.py annotano esplicitamente i tipi di ritorno.
+[[tool.mypy.overrides]]
+module = "unicodedata2.*"
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

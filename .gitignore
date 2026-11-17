@@ -37,7 +37,25 @@ local_*.py
 .venv
 venv/
 .mypy_cache/
+.pytest_cache/
+.ruff_cache/
+*.spec
 TEST*.xml
+
+# .python-version NON va ignorato: e' il pin dell'interprete e va versionato.
+
+
+# ==========================================
+# Go
+# ==========================================
+*.exe
+*.exe~
+*.test
+*.out
+/bin/
+/dist/
+vendor/
+
 
 # ==========================================
 # IDEs config & temp files

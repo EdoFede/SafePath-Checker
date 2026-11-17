@@ -19,7 +19,7 @@ TestData/      dati reali di test (nomi non conformi presi dal campo)
 | File | Ruolo |
 | --- | --- |
 | `docs/File naming Tech-rules.md` | **Normativo.** Regole di naming: charset Profilo B, regole posizionali, nomi riservati, limiti di lunghezza, case/Unicode, codici errore, test vectors, esempi di rewrite. È il documento a cui riferirsi per implementare la validazione. |
-| `docs/Naming tools Dev notes.md` | **Normativo.** Note implementative: architettura (`walker` / `rules` / `planner`), contratto di determinismo, gestione Unicode, path handling, hazard di rename, modello plan/apply, parità cross-implementazione, exit code. È il documento a cui riferirsi per implementare i tool. |
+| `docs/Development guidelines.md` | **Normativo.** Istruzioni e linee guida implementative: architettura (`walker` / `rules` / `planner`), contratto di determinismo, gestione Unicode, path handling, hazard di rename, modello plan/apply, parità cross-implementazione, exit code. È il documento a cui riferirsi per implementare i tool. |
 | `docs/File naming guide.md` | **Secondario.** Versione "umana"/discorsiva dello standard, usata dall'utente per documentare il tool verso i clienti. Consultarla solo come reference aggiuntiva; in caso di disaccordo vincono i due documenti sopra. |
 
 ### `OLD/` — materiale storico
@@ -60,7 +60,7 @@ Questo file **non contiene** né deve contenere una sintesi delle regole di nami
 Prima di implementare, modificare o discutere validazione, rename, limiti, codici errore, architettura o comportamento dei comandi: **leggere il documento di dettaglio pertinente**, per intero o nella sezione interessata.
 
 - Regole di naming → `docs/File naming Tech-rules.md`
-- Architettura e implementazione dei tool → `docs/Naming tools Dev notes.md`
+- Architettura e implementazione dei tool → `docs/Development guidelines.md`
 
 Non lavorare a memoria, né su valori riportati altrove (incluso questo file, i commenti nel codice o `OLD/`): se un valore o una regola serve, va riletto dal documento. In caso di conflitto tra qualunque altra fonte e i documenti in `docs/`, vincono i documenti.
 

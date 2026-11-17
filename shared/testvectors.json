@@ -1,0 +1,81 @@
+{
+  "schema_version": "1",
+  "ruleset_version": "1",
+  "description": "Vettori di regressione normativi, consumati dalle test suite Go e Python. Fonte: docs/File naming Tech-rules.md §8 (tabella) e casi limite derivati dalle §1-§5. Nessuna implementazione tiene una copia propria di questo file.",
+  "path_vectors": [
+    {"path": "Amministrazione/Verbale CDA 2026-08-06.md", "kind": "file", "codes": [], "source": "rules §8"},
+    {"path": "Tecnico/Relazione Città (rev 3).docx", "kind": "file", "codes": [], "source": "rules §8"},
+    {"path": "Offerta Rossi e C. S.p.A.pdf", "kind": "file", "codes": [], "source": "rules §8"},
+    {"path": "Nota n.12 del 3.4.2026.docx", "kind": "file", "codes": [], "source": "rules §8"},
+    {"path": "RELAZIONE FINALE.PDF", "kind": "file", "codes": [], "source": "rules §8"},
+    {"path": "Documento CON allegati.pdf", "kind": "file", "codes": [], "source": "rules §8"},
+    {"path": "archivio.tar.gz", "kind": "file", "codes": [], "source": "rules §8"},
+    {"path": "Elenco soci S.p.A..pdf", "kind": "file", "codes": ["POS-008"], "source": "rules §8"},
+    {"path": "Elenco soci S.p.A.", "kind": "file", "codes": ["POS-002"], "source": "rules §8"},
+    {"path": "Offerta n° 12-2024 – Rossi & C.pdf", "kind": "file", "codes": ["CHR-001"], "source": "rules §8, con / rimosso: nel path sarebbe un separatore"},
+    {"path": "CON.rev 2.docx", "kind": "file", "codes": ["RSV-001"], "source": "rules §8"},
+    {"path": "Riepilogo trimestrale .md", "kind": "file", "codes": ["POS-003"], "source": "rules §8"},
+    {"path": "._appunti.md", "kind": "file", "codes": ["POS-001", "POS-004"], "source": "rules §8; POS-001 concorrente, il nome inizia comunque con un punto"},
+    {"path": "-verbale.pdf", "kind": "file", "codes": ["POS-005"], "source": "rules §8"},
+    {"path": "~$bilancio.xlsx", "kind": "file", "codes": ["CHR-001", "POS-006"], "source": "rules §8; CHR-001 concorrente, $ e' fuori Profilo B"},
+    {"path": "Report  finale.md", "kind": "file", "codes": ["POS-007"], "source": "rules §8"},
+    {"path": "Backup 2024-01-15 12:30.tar.gz", "kind": "file", "codes": ["CHR-001"], "source": "rules §8"},
+    {"path": "Citta\u0300.docx", "kind": "file", "codes": ["CHR-002"], "source": "rules §8, Città in NFD: a + U+0300. Gli escape sono obbligatori, la forma precomposta non testerebbe nulla"},
+    {"path": "a/b/c/d/e/f/g/file.md", "kind": "file", "codes": ["LEN-006"], "source": "rules §8"},
+    {"path": ".DS_Store", "kind": "file", "codes": ["POS-001", "RSV-002"], "source": "rules §8"},
+
+    {"path": "CON", "kind": "file", "codes": ["RSV-001"], "source": "rules §4, device senza estensione"},
+    {"path": "CON.txt", "kind": "file", "codes": ["RSV-001"], "source": "rules §4"},
+    {"path": "precon.txt", "kind": "file", "codes": [], "source": "rules §4, non e' un device name"},
+    {"path": "LPT9.docx", "kind": "file", "codes": ["RSV-001"], "source": "rules §4"},
+    {"path": "documento.tmp", "kind": "file", "codes": ["RSV-003"], "source": "rules §4, estensione riservata"},
+    {"path": "documento.part", "kind": "file", "codes": ["RSV-003"], "source": "rules §4"},
+    {"path": "desktop.ini", "kind": "file", "codes": ["RSV-002"], "source": "rules §4, basename riservato"},
+    {"path": "Verbale rev. 2", "kind": "file", "codes": [], "source": "rules §3.1, nessuna estensione: il segmento contiene uno spazio"},
+    {"path": "Bilancio (bozza), rev 2.xlsx", "kind": "file", "codes": [], "source": "rules §2.2, parentesi e virgola interna sono validi"},
+    {"path": "iPhone.png", "kind": "file", "codes": [], "source": "rules §2.2, case misto valido"},
+    {"path": "Città e Provincia.xlsx", "kind": "file", "codes": [], "source": "rules §2.2, accenti in NFC validi"},
+    {"path": "Rossi e C. S.p.A.pdf", "kind": "file", "codes": [], "source": "rules §2.2, punti interni validi"},
+
+    {"path": "a/b/c/d/e/f/file.md", "kind": "file", "codes": [], "source": "rules §1, profondita' 6 e' il limite ammesso"},
+    {"path": "a/b/c/d/e/f", "kind": "dir", "codes": [], "source": "rules §1, directory al limite di profondita'"},
+    {"path": "a/b/c/d/e/f/g", "kind": "dir", "codes": ["LEN-006"], "source": "rules §1, directory oltre il limite"},
+
+    {"path": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA.pdf", "kind": "file", "codes": [], "source": "rules §1, 64 caratteri esatti"},
+    {"path": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA.pdf", "kind": "file", "codes": ["LEN-003"], "source": "rules §1, 65 caratteri"},
+    {"path": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "kind": "dir", "codes": [], "source": "rules §1, 48 caratteri esatti"},
+    {"path": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "kind": "dir", "codes": ["LEN-004"], "source": "rules §1, 49 caratteri"},
+    {"path": "àààààààààààààààààààààààààààààààà.pdf", "kind": "file", "codes": ["LEN-003"], "source": "rules §1, 36 caratteri NFC ma 68 in NFD: il conteggio si fa sul caso peggiore"},
+
+    {"path": "L'ISOLANTE/documento.pdf", "kind": "file", "codes": [], "source": "rules §6: le regole di §2-§4 si applicano a un componente per volta. Il file non eredita CHR-001 dalla directory, che ha gia' la propria riga"},
+    {"path": "L'ISOLANTE", "kind": "dir", "codes": ["CHR-001"], "source": "rules §2.3: la directory riporta la propria violazione"},
+    {"path": "Report  finale/documento.pdf", "kind": "file", "codes": [], "source": "rules §6: POS-007 del padre non ricade sul figlio"},
+    {"path": "", "kind": "file", "codes": ["PTH-001"], "source": "rules §7, path vuoto"}
+  ],
+  "component_vectors": [
+    {"name": "Verbale CDA.docx", "kind": "file", "codes": [], "source": "rules §2.2"},
+    {"name": "10 Amministrazione", "kind": "dir", "codes": [], "source": "rules §2.2, spazio interno singolo"},
+    {"name": "L'ISOLANTE", "kind": "dir", "codes": ["CHR-001"], "source": "rules §2.3, apostrofo shell-unsafe"},
+    {"name": "DECO-TEC", "kind": "dir", "codes": [], "source": "trattino interno valido"},
+    {"name": "Offerta n 0000332026. del 11062026.PDF", "kind": "file", "codes": [], "source": "TestData, punto interno seguito da spazio: valido"},
+    {"name": "SCIA_PAL.GRANDE", "kind": "dir", "codes": [], "source": "TestData, underscore e punto interni validi"},
+    {"name": "Icon\r", "kind": "file", "codes": ["CHR-001", "RSV-002"], "source": "rules §4, artefatto Finder con CR"}
+  ],
+  "collision_vectors": [
+    {"names": ["Bilancio.xlsx", "bilancio.xlsx"], "colliding": ["Bilancio.xlsx", "bilancio.xlsx"], "source": "rules §8"},
+    {"names": ["Bilancio.xlsx", "Bilancio 2026.xlsx"], "colliding": [], "source": "rules §5, nomi distinti"},
+    {"names": ["Città.docx", "Citta\u0300.docx"], "colliding": ["Città.docx", "Citta\u0300.docx"], "source": "rules §5, la stessa stringa in NFC e in NFD collide: la chiave normalizza prima di fare folding"},
+    {"names": ["STRASSE.txt", "strasse.txt"], "colliding": ["STRASSE.txt", "strasse.txt"], "source": "rules §5, casefold semplice"},
+    {"names": ["a.txt", "b.txt", "c.txt"], "colliding": [], "source": "nessuna collisione"}
+  ],
+  "extension_vectors": [
+    {"name": "Rossi e C. S.p.A.pdf", "base": "Rossi e C. S.p.A", "ext": ".pdf", "source": "rules §3.1"},
+    {"name": "archivio.tar.gz", "base": "archivio.tar", "ext": ".gz", "source": "rules §3.1"},
+    {"name": "Nota n.12 del 3.4.2026.docx", "base": "Nota n.12 del 3.4.2026", "ext": ".docx", "source": "rules §3.1"},
+    {"name": "Verbale rev. 2", "base": "Verbale rev. 2", "ext": "", "source": "rules §3.1, segmento con spazio"},
+    {"name": "Elenco soci S.p.A.", "base": "Elenco soci S.p.A.", "ext": "", "source": "rules §3.1, segmento finale vuoto"},
+    {"name": "senza estensione", "base": "senza estensione", "ext": "", "source": "rules §3.1, nessun punto"},
+    {"name": "file.verylongextension", "base": "file.verylongextension", "ext": "", "source": "rules §3.1, segmento oltre 10 caratteri"},
+    {"name": "file.PDF", "base": "file", "ext": ".PDF", "source": "rules §3.1, estensione maiuscola valida"}
+  ]
+}

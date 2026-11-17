@@ -1,0 +1,3 @@
+# Runtime. La versione di unicodedata2 non va mossa senza rigenerare i test
+# vector: le tabelle Unicode fanno parte del contratto di parita' con Go.
+unicodedata2==15.0.0
